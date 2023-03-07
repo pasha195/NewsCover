@@ -15,7 +15,7 @@ export class News extends Component {
     country: PropTypes.string,
     pageSize: PropTypes.number,
     category: PropTypes.string,
-  };        
+  };
 
   capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -48,14 +48,15 @@ export class News extends Component {
       totalResults: parsedData.totalResults,
       loading: false,
       disableNextButton: totalPages === page,
-      showLoadingBar: false 
+      showLoadingBar: false
     });
   }
 
   async componentDidMount() {
     this.updateNews(1);
     window.addEventListener('scroll', this.handleScroll);
-    this.setState({ showLoadingBar: true }); }
+    this.setState({ showLoadingBar: true });
+  }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -68,7 +69,7 @@ export class News extends Component {
 
     const threshold = window.innerHeight + document.documentElement.scrollTop;
     const offset = document.documentElement.offsetHeight;
-    
+
     if (threshold >= offset) {
       const nextPage = page + 1;
       this.setState({ loading: true, page: nextPage });
@@ -80,7 +81,7 @@ export class News extends Component {
     const { articles, loading, showLoadingBar } = this.state;
     return (
       <div className="container my-3">
-        <h1 className="text-center" style={{ margin: '35px', marginTop:'90px'}}  >
+        <h1 className="text-center" style={{ margin: '35px', marginTop: '90px' }}  >
           NewsCover - Top {this.capitalizeFirstLetter(this.props.category)} Headlines
         </h1>
 
@@ -108,18 +109,13 @@ export class News extends Component {
           })
           }
         </div>
-
-
-
         {loading && <Loader />}
-
-
       </div>
     );
   }
 
 
-  
+
 }
 
 export default News;
